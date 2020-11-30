@@ -34,9 +34,9 @@ public class ResponseService extends CommonServiceImplementation<Response, Integ
   @Override
   protected Response mergeEntities(Response newEntity, Response entity) {
 
-    newEntity.setComent(entity.getComent() == null ? entity.getComent() : newEntity.getComent());
-    newEntity.setComent(entity.getComent() == null ? entity.getComent() : newEntity.getComent());
-    newEntity.setPhotos(entity.getPhotos() == null ? entity.getPhotos() : newEntity.getPhotos());
+    newEntity.setComent(entity.getComent() != null ? entity.getComent() : newEntity.getComent());
+    newEntity.setComent(entity.getComent() != null ? entity.getComent() : newEntity.getComent());
+    newEntity.setPhotos(entity.getPhotos() != null ? entity.getPhotos() : newEntity.getPhotos());
 
     return newEntity;
   }

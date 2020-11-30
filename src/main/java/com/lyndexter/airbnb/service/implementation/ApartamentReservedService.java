@@ -45,18 +45,17 @@ public class ApartamentReservedService
       ApartamentReserved newEntity, ApartamentReserved entity) {
 
     newEntity.setApartament(
-        entity.getApartament() == null ? entity.getApartament() : newEntity.getApartament());
+        entity.getApartament() != null ? entity.getApartament() : newEntity.getApartament());
     newEntity.setReserved(
-        entity.getReserved() == null ? entity.getReserved() : newEntity.getReserved());
-    newEntity.setWish(entity.getWish() == null ? entity.getWish() : newEntity.getWish());
+        entity.getReserved() != null ? entity.getReserved() : newEntity.getReserved());
+    newEntity.setWish(entity.getWish() != null ? entity.getWish() : newEntity.getWish());
     newEntity.setPaymentTransaction(
-        entity.getPaymentTransaction() == null
+        entity.getPaymentTransaction() != null
             ? entity.getPaymentTransaction()
             : newEntity.getPaymentTransaction());
 
     return newEntity;
   }
-  
 
   public Set<ApartamentReserved> getApartamentsReservedByPaymentTransactionId(
       Integer paymentTransactionId) {

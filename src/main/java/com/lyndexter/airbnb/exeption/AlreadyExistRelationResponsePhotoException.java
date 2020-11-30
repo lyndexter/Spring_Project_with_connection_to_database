@@ -1,4 +1,3 @@
 package com.lyndexter.airbnb.exeption;
 
-public class AlreadyExistRelationResponsePhotoException extends RuntimeException {
-}
+public class AlreadyExistRelationResponsePhotoException extends RuntimeException {}

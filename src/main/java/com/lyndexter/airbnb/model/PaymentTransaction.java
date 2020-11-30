@@ -67,13 +67,13 @@ public class PaymentTransaction {
     }
 
     PaymentTransaction that = (PaymentTransaction) o;
-  
+
     return Objects.equals(id, that.id);
   }
 
   @Override
   public int hashCode() {
-  
+
     return id != null ? id.hashCode() : 0;
   }
 

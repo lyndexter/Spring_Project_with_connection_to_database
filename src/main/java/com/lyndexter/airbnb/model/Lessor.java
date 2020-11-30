@@ -1,6 +1,5 @@
 package com.lyndexter.airbnb.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -107,13 +106,13 @@ public class Lessor {
     }
 
     Lessor lessor = (Lessor) o;
-  
+
     return Objects.equals(id, lessor.id);
   }
 
   @Override
   public int hashCode() {
-  
+
     return id != null ? id.hashCode() : 0;
   }
 
@@ -126,7 +125,7 @@ public class Lessor {
     this.apartaments = apartaments;
   }
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "photo_id", referencedColumnName = "id", nullable = false)
   public Photo getPhoto() {
     return photo;
@@ -136,7 +135,7 @@ public class Lessor {
     this.photo = photo;
   }
 
-  @OneToMany(mappedBy = "lessor", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "lessor")
   public Set<PaymentTransaction> getPaymentTransactions() {
     return paymentTransactions;
   }

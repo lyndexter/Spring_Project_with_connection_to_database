@@ -2,7 +2,6 @@ package com.lyndexter.airbnb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -86,13 +85,13 @@ public class Photo {
     }
 
     Photo photo = (Photo) o;
-  
+
     return Objects.equals(id, photo.id);
   }
 
   @Override
   public int hashCode() {
-  
+
     return id != null ? id.hashCode() : 0;
   }
 
@@ -105,7 +104,7 @@ public class Photo {
     this.apartaments = apartaments;
   }
 
-  @ManyToMany(mappedBy = "photos", fetch = FetchType.EAGER)
+  @ManyToMany(mappedBy = "photos")
   public Set<Response> getResponses() {
     return responses;
   }

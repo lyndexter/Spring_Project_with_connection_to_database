@@ -44,20 +44,19 @@ public class PaymentTransactionService
   protected PaymentTransaction mergeEntities(
       PaymentTransaction newEntity, PaymentTransaction entity) {
 
-    newEntity.setRenter(entity.getRenter() == null ? entity.getRenter() : newEntity.getRenter());
-    newEntity.setLessor(entity.getLessor() == null ? entity.getLessor() : newEntity.getLessor());
+    newEntity.setRenter(entity.getRenter() != null ? entity.getRenter() : newEntity.getRenter());
+    newEntity.setLessor(entity.getLessor() != null ? entity.getLessor() : newEntity.getLessor());
     newEntity.setRenterPayment(
-        entity.getRenterPayment() == null
+        entity.getRenterPayment() != null
             ? entity.getRenterPayment()
             : newEntity.getRenterPayment());
     newEntity.setLessorRecieveMoney(
-        entity.getLessorRecieveMoney() == null
+        entity.getLessorRecieveMoney() != null
             ? entity.getLessorRecieveMoney()
             : newEntity.getLessorRecieveMoney());
 
     return newEntity;
   }
-  
 
   public Set<PaymentTransaction> getPaymentTransactionsByLessorId(Integer lessorId) {
     if (lessorRepository.existsById(lessorId)) {

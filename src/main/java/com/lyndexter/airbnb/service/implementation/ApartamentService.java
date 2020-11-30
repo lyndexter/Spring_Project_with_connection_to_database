@@ -45,18 +45,18 @@ public class ApartamentService extends CommonServiceImplementation<Apartament, I
   @Override
   protected Apartament mergeEntities(Apartament newEntity, Apartament entity) {
 
-    newEntity.setArea(entity.getArea() == null ? entity.getArea() : newEntity.getArea());
-    newEntity.setAdress(entity.getAdress() == null ? entity.getAdress() : newEntity.getAdress());
+    newEntity.setArea(entity.getArea() != null ? entity.getArea() : newEntity.getArea());
+    newEntity.setAdress(entity.getAdress() != null ? entity.getAdress() : newEntity.getAdress());
     newEntity.setCeilingHigh(
-        entity.getCeilingHigh() == null ? entity.getCeilingHigh() : newEntity.getCeilingHigh());
+        entity.getCeilingHigh() != null ? entity.getCeilingHigh() : newEntity.getCeilingHigh());
     newEntity.setRoomNumber(
-        entity.getRoomNumber() == null ? entity.getRoomNumber() : newEntity.getRoomNumber());
+        entity.getRoomNumber() != null ? entity.getRoomNumber() : newEntity.getRoomNumber());
     newEntity.setRecomendedPeopleCount(
-        entity.getRecomendedPeopleCount() == null
+        entity.getRecomendedPeopleCount() != null
             ? entity.getRecomendedPeopleCount()
             : newEntity.getRecomendedPeopleCount());
-    newEntity.setPrice(entity.getPrice() == null ? entity.getPrice() : newEntity.getPrice());
-    newEntity.setLessor(entity.getLessor() == null ? entity.getLessor() : newEntity.getLessor());
+    newEntity.setPrice(entity.getPrice() != null ? entity.getPrice() : newEntity.getPrice());
+    newEntity.setLessor(entity.getLessor() != null ? entity.getLessor() : newEntity.getLessor());
 
     return newEntity;
   }
@@ -113,9 +113,9 @@ public class ApartamentService extends CommonServiceImplementation<Apartament, I
       throw new NoSuchRelationApartamentResponseException();
     }
 
-    for (Apartament temp_apartament : response.getApartaments()) {
-      temp_apartament.getResponses().remove(response);
-      repository.saveAndFlush(temp_apartament);
+    for (Apartament tempApartament : response.getApartaments()) {
+      tempApartament.getResponses().remove(response);
+      repository.saveAndFlush(tempApartament);
     }
 
     apartament.getResponses().add(response);

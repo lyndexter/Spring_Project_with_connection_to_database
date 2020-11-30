@@ -115,7 +115,7 @@ public class Apartament {
     return id != null ? id.hashCode() : 0;
   }
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "lessor_id", referencedColumnName = "id", nullable = false)
   public Lessor getLessor() {
     return lessor;
@@ -134,7 +134,7 @@ public class Apartament {
     this.apartamentReserveds = apartamentReserveds;
   }
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany
   @JoinTable(
       name = "apartament_photo",
       joinColumns =
@@ -149,7 +149,7 @@ public class Apartament {
     this.photos = photos;
   }
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany
   @JoinTable(
       name = "apartament_response",
       joinColumns =

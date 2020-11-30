@@ -64,12 +64,13 @@ public class ApartamentReserved {
     }
 
     ApartamentReserved that = (ApartamentReserved) o;
-  
-    return Objects.equals(id, that.id);}
+
+    return Objects.equals(id, that.id);
+  }
 
   @Override
   public int hashCode() {
-  
+
     return id != null ? id.hashCode() : 0;
   }
 

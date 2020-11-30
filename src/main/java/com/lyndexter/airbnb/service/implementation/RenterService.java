@@ -28,18 +28,17 @@ public class RenterService extends CommonServiceImplementation<Renter, Integer> 
   @Override
   protected Renter mergeEntities(Renter newEntity, Renter entity) {
 
-    newEntity.setName(entity.getName() == null ? entity.getName() : newEntity.getName());
+    newEntity.setName(entity.getName() != null ? entity.getName() : newEntity.getName());
     newEntity.setSurname(
-        entity.getSurname() == null ? entity.getSurname() : newEntity.getSurname());
+        entity.getSurname() != null ? entity.getSurname() : newEntity.getSurname());
     newEntity.setLastName(
-        entity.getLastName() == null ? entity.getLastName() : newEntity.getLastName());
+        entity.getLastName() != null ? entity.getLastName() : newEntity.getLastName());
     newEntity.setPhoneNumber(
-        entity.getPhoneNumber() == null ? entity.getPhoneNumber() : newEntity.getPhoneNumber());
+        entity.getPhoneNumber() != null ? entity.getPhoneNumber() : newEntity.getPhoneNumber());
     newEntity.setCardNumber(
-        entity.getCardNumber() == null ? entity.getCardNumber() : newEntity.getCardNumber());
-    newEntity.setPhoto(entity.getPhoto() == null ? entity.getPhoto() : newEntity.getPhoto());
+        entity.getCardNumber() != null ? entity.getCardNumber() : newEntity.getCardNumber());
+    newEntity.setPhoto(entity.getPhoto() != null ? entity.getPhoto() : newEntity.getPhoto());
 
     return newEntity;
   }
-  
 }

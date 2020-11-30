@@ -183,7 +183,9 @@ ALTER TABLE renter
 ALTER TABLE payment_transaction
     ADD CONSTRAINT fk_payment_transaction_lessor1
         FOREIGN KEY (lessor_id)
-            REFERENCES lessor (id),
+            REFERENCES lessor (id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
     ADD CONSTRAINT fk_payment_transaction_render1
         FOREIGN KEY (renter_id)
             REFERENCES renter (id)
@@ -193,7 +195,9 @@ ALTER TABLE payment_transaction
 ALTER TABLE apartament_reserved
     ADD CONSTRAINT fk_apartament_reserved_apartament
         FOREIGN KEY (apartament_id)
-            REFERENCES apartament (id),
+            REFERENCES apartament (id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
     ADD CONSTRAINT fk_apartament_reserved_payment_transaction1
         FOREIGN KEY (payment_transaction_id)
             REFERENCES payment_transaction (id)
@@ -203,7 +207,9 @@ ALTER TABLE apartament_reserved
 ALTER TABLE apartament_response
     ADD CONSTRAINT fk_apartament_response_apartament
         FOREIGN KEY (apartament_id)
-            REFERENCES apartament (id),
+            REFERENCES apartament (id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
     ADD CONSTRAINT fk_apartament_response_response
         FOREIGN KEY (response_id)
             REFERENCES response (id)
@@ -213,7 +219,9 @@ ALTER TABLE apartament_response
 ALTER TABLE apartament_photo
     ADD CONSTRAINT fk_apartament_photo_apartament1
         FOREIGN KEY (apartament_id)
-            REFERENCES apartament (id),
+            REFERENCES apartament (id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
     ADD CONSTRAINT fk_apartament_photo_photo1
         FOREIGN KEY (photo_id)
             REFERENCES photo (id)
