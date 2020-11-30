@@ -78,11 +78,38 @@ public class ApartamentController implements ControllerWithDto<ApartamentDto, Ap
     return new ResponseEntity<>(apartamentsDto, HttpStatus.OK);
   }
 
-  @GetMapping(value = "/lyndexter/apartament/response/{responseId}")
+  @GetMapping(value = "/lyndexter/apartament/{apartamentId}/response/{responseId}")
   public ResponseEntity<List<ApartamentDto>> getApartamentsByResponse(
       @PathVariable Integer responseId) {
     Set<Apartament> apartaments = service.getApartamentsByResponseId(responseId);
     List<ApartamentDto> apartamentsDto = createDtos(apartaments);
+
+    return new ResponseEntity<>(apartamentsDto, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/lyndexter/apartament/{apartamentId}/response/{responseId}")
+  public ResponseEntity<ApartamentDto> setResponseForApartament(
+      @PathVariable Integer apartamentId, @PathVariable Integer responseId) {
+    Apartament apartament = service.setApartamentToResponse(apartamentId, responseId);
+    ApartamentDto apartamentsDto = createDto(apartament);
+
+    return new ResponseEntity<>(apartamentsDto, HttpStatus.OK);
+  }
+
+  @PutMapping(value = "/lyndexter/apartament/{apartamentId}/response/{responseId}")
+  public ResponseEntity<ApartamentDto> updateResponseForApartament(
+      @PathVariable Integer apartamentId, @PathVariable Integer responseId) {
+    Apartament apartament = service.updateApartamentToResponse(apartamentId, responseId);
+    ApartamentDto apartamentsDto = createDto(apartament);
+
+    return new ResponseEntity<>(apartamentsDto, HttpStatus.OK);
+  }
+
+  @DeleteMapping(value = "/lyndexter/apartament/{apartamentId}/response/{responseId}")
+  public ResponseEntity<ApartamentDto> deleteResponseForApartament(
+      @PathVariable Integer apartamentId, @PathVariable Integer responseId) {
+    Apartament apartament = service.deleteApartamentToResponse(apartamentId, responseId);
+    ApartamentDto apartamentsDto = createDto(apartament);
 
     return new ResponseEntity<>(apartamentsDto, HttpStatus.OK);
   }

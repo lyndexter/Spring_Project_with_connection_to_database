@@ -12,8 +12,6 @@ public abstract class CommonServiceImplementation<T, ID> implements CommonServic
 
   protected abstract T mergeEntities(T newEntity, T entity);
 
-  protected abstract void checkIfEmpty(T entity);
-
   @Override
   public List<T> getEntities() {
     return getRepository().findAll();

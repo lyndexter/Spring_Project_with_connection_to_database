@@ -41,13 +41,6 @@ public class ResponseService extends CommonServiceImplementation<Response, Integ
     return newEntity;
   }
 
-  @Override
-  protected void checkIfEmpty(Response entity) {
-    if (repository.existsById(entity.getId())) {
-      throw new AlreadyExistsRenterException();
-    }
-  }
-
   public Set<Response> getResponsesByApartamentId(Integer apartamentId) {
     if (apartamentRepository.existsById(apartamentId)) {
       Apartament apartament = apartamentRepository.findById(apartamentId).get();

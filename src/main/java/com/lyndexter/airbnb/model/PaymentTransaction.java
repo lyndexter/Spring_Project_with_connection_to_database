@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -66,26 +67,14 @@ public class PaymentTransaction {
     }
 
     PaymentTransaction that = (PaymentTransaction) o;
-
-    if (id != null ? !id.equals(that.id) : that.id != null) {
-      return false;
-    }
-    if (renterPayment != null
-        ? !renterPayment.equals(that.renterPayment)
-        : that.renterPayment != null) {
-      return false;
-    }
-    return lessorRecieveMoney != null
-        ? lessorRecieveMoney.equals(that.lessorRecieveMoney)
-        : that.lessorRecieveMoney == null;
+  
+    return Objects.equals(id, that.id);
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (renterPayment != null ? renterPayment.hashCode() : 0);
-    result = 31 * result + (lessorRecieveMoney != null ? lessorRecieveMoney.hashCode() : 0);
-    return result;
+  
+    return id != null ? id.hashCode() : 0;
   }
 
   @OneToMany(mappedBy = "paymentTransaction")

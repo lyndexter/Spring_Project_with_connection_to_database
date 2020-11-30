@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -106,42 +107,14 @@ public class Lessor {
     }
 
     Lessor lessor = (Lessor) o;
-
-    if (id != null ? !id.equals(lessor.id) : lessor.id != null) {
-      return false;
-    }
-    if (name != null ? !name.equals(lessor.name) : lessor.name != null) {
-      return false;
-    }
-    if (surname != null ? !surname.equals(lessor.surname) : lessor.surname != null) {
-      return false;
-    }
-    if (lastName != null ? !lastName.equals(lessor.lastName) : lessor.lastName != null) {
-      return false;
-    }
-    if (phoneNumber != null
-        ? !phoneNumber.equals(lessor.phoneNumber)
-        : lessor.phoneNumber != null) {
-      return false;
-    }
-    if (cardNumber != null ? !cardNumber.equals(lessor.cardNumber) : lessor.cardNumber != null) {
-      return false;
-    }
-    return contactInfo != null
-        ? contactInfo.equals(lessor.contactInfo)
-        : lessor.contactInfo == null;
+  
+    return Objects.equals(id, lessor.id);
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (surname != null ? surname.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-    result = 31 * result + (cardNumber != null ? cardNumber.hashCode() : 0);
-    result = 31 * result + (contactInfo != null ? contactInfo.hashCode() : 0);
-    return result;
+  
+    return id != null ? id.hashCode() : 0;
   }
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "lessor")

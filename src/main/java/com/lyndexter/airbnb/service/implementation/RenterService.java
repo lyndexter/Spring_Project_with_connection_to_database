@@ -41,11 +41,5 @@ public class RenterService extends CommonServiceImplementation<Renter, Integer> 
 
     return newEntity;
   }
-
-  @Override
-  protected void checkIfEmpty(Renter entity) {
-    if (repository.existsById(entity.getId())) {
-      throw new AlreadyExistsRenterException();
-    }
-  }
+  
 }

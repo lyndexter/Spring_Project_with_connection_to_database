@@ -1,7 +1,10 @@
 package com.lyndexter.airbnb.service.implementation;
 
+import com.lyndexter.airbnb.exeption.AlreadyExistRelationApartamentResponseException;
 import com.lyndexter.airbnb.exeption.NoSuchApartamentException;
 import com.lyndexter.airbnb.exeption.NoSuchLessorException;
+import com.lyndexter.airbnb.exeption.NoSuchRelationApartamentResponseException;
+import com.lyndexter.airbnb.exeption.NoSuchResponseException;
 import com.lyndexter.airbnb.model.Apartament;
 import com.lyndexter.airbnb.model.Lessor;
 import com.lyndexter.airbnb.model.Response;
@@ -10,6 +13,7 @@ import com.lyndexter.airbnb.repository.LessorRepository;
 import com.lyndexter.airbnb.repository.ResponseRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 import java.util.Set;
 
 @Service
@@ -57,13 +61,6 @@ public class ApartamentService extends CommonServiceImplementation<Apartament, I
     return newEntity;
   }
 
-  @Override
-  protected void checkIfEmpty(Apartament entity) {
-    if (repository.existsById(entity.getId())) {
-      throw new AlreadyExistsApartamentException();
-    }
-  }
-
   public Set<Apartament> getApartamentsByLessorId(Integer lessorId) {
     if (lessorRepository.existsById(lessorId)) {
       Lessor lessor = lessorRepository.findById(lessorId).get();
@@ -78,5 +75,72 @@ public class ApartamentService extends CommonServiceImplementation<Apartament, I
       return response.getApartaments();
     }
     throw new NoSuchLessorException();
+  }
+
+  @Transactional
+  public Apartament setApartamentToResponse(Integer apartamentId, Integer responseId) {
+
+    if (!repository.existsById(apartamentId)) {
+      throw new NoSuchApartamentException();
+    }
+    if (!responseRepository.existsById(responseId)) {
+      throw new NoSuchResponseException();
+    }
+    Apartament apartament = repository.findById(apartamentId).get();
+    Response response = responseRepository.findById(responseId).get();
+
+    if (!response.getApartaments().isEmpty()) {
+      throw new AlreadyExistRelationApartamentResponseException();
+    }
+    apartament.getResponses().add(response);
+
+    return repository.save(apartament);
+  }
+
+  @Transactional
+  public Apartament updateApartamentToResponse(Integer apartamentId, Integer responseId) {
+
+    if (!repository.existsById(apartamentId)) {
+      throw new NoSuchApartamentException();
+    }
+    if (!responseRepository.existsById(responseId)) {
+      throw new NoSuchResponseException();
+    }
+    Apartament apartament = repository.findById(apartamentId).get();
+    Response response = responseRepository.findById(responseId).get();
+
+    if (response.getApartaments().isEmpty()) {
+      throw new NoSuchRelationApartamentResponseException();
+    }
+
+    for (Apartament temp_apartament : response.getApartaments()) {
+      temp_apartament.getResponses().remove(response);
+      repository.saveAndFlush(temp_apartament);
+    }
+
+    apartament.getResponses().add(response);
+
+    return repository.save(apartament);
+  }
+
+  @Transactional
+  public Apartament deleteApartamentToResponse(Integer apartamentId, Integer responseId) {
+
+    if (!repository.existsById(apartamentId)) {
+      throw new NoSuchApartamentException();
+    }
+    if (!responseRepository.existsById(responseId)) {
+      throw new NoSuchResponseException();
+    }
+
+    Apartament apartament = repository.findById(apartamentId).get();
+    Response response = responseRepository.findById(responseId).get();
+
+    if (response.getApartaments().isEmpty()) {
+      throw new NoSuchRelationApartamentResponseException();
+    }
+    apartament.getResponses().remove(response);
+
+    return repository.save(apartament);
   }
 }

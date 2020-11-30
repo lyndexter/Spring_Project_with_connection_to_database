@@ -57,13 +57,7 @@ public class PaymentTransactionService
 
     return newEntity;
   }
-
-  @Override
-  protected void checkIfEmpty(PaymentTransaction entity) {
-    if (repository.existsById(entity.getId())) {
-      throw new AlreadyExistsPaymentTransaction();
-    }
-  }
+  
 
   public Set<PaymentTransaction> getPaymentTransactionsByLessorId(Integer lessorId) {
     if (lessorRepository.existsById(lessorId)) {

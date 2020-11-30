@@ -1,8 +1,8 @@
 package com.lyndexter.airbnb.model;
 
-
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -107,40 +107,12 @@ public class Apartament {
     }
 
     Apartament that = (Apartament) o;
-
-    if (id != null ? !id.equals(that.id) : that.id != null) {
-      return false;
-    }
-    if (area != null ? !area.equals(that.area) : that.area != null) {
-      return false;
-    }
-    if (adress != null ? !adress.equals(that.adress) : that.adress != null) {
-      return false;
-    }
-    if (ceilingHigh != null ? !ceilingHigh.equals(that.ceilingHigh) : that.ceilingHigh != null) {
-      return false;
-    }
-    if (roomNumber != null ? !roomNumber.equals(that.roomNumber) : that.roomNumber != null) {
-      return false;
-    }
-    if (recomendedPeopleCount != null
-        ? !recomendedPeopleCount.equals(that.recomendedPeopleCount)
-        : that.recomendedPeopleCount != null) {
-      return false;
-    }
-    return price != null ? price.equals(that.price) : that.price == null;
+    return Objects.equals(id, that.id);
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (area != null ? area.hashCode() : 0);
-    result = 31 * result + (adress != null ? adress.hashCode() : 0);
-    result = 31 * result + (ceilingHigh != null ? ceilingHigh.hashCode() : 0);
-    result = 31 * result + (roomNumber != null ? roomNumber.hashCode() : 0);
-    result = 31 * result + (recomendedPeopleCount != null ? recomendedPeopleCount.hashCode() : 0);
-    result = 31 * result + (price != null ? price.hashCode() : 0);
-    return result;
+    return id != null ? id.hashCode() : 0;
   }
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -56,13 +56,7 @@ public class ApartamentReservedService
 
     return newEntity;
   }
-
-  @Override
-  protected void checkIfEmpty(ApartamentReserved entity) {
-    if (repository.existsById(entity.getId())) {
-      throw new AlreadyExistsApartamentReservedException();
-    }
-  }
+  
 
   public Set<ApartamentReserved> getApartamentsReservedByPaymentTransactionId(
       Integer paymentTransactionId) {

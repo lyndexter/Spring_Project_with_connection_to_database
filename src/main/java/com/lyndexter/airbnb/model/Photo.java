@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -85,30 +86,14 @@ public class Photo {
     }
 
     Photo photo = (Photo) o;
-
-    if (id != null ? !id.equals(photo.id) : photo.id != null) {
-      return false;
-    }
-    if (type != null ? !type.equals(photo.type) : photo.type != null) {
-      return false;
-    }
-    if (!Arrays.equals(image, photo.image)) {
-      return false;
-    }
-    if (imageSize != null ? !imageSize.equals(photo.imageSize) : photo.imageSize != null) {
-      return false;
-    }
-    return name != null ? name.equals(photo.name) : photo.name == null;
+  
+    return Objects.equals(id, photo.id);
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (type != null ? type.hashCode() : 0);
-    result = 31 * result + Arrays.hashCode(image);
-    result = 31 * result + (imageSize != null ? imageSize.hashCode() : 0);
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    return result;
+  
+    return id != null ? id.hashCode() : 0;
   }
 
   @ManyToMany(mappedBy = "photos")

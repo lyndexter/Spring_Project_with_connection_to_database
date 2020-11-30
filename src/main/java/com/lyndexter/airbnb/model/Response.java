@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -63,21 +64,13 @@ public class Response {
 
     Response response = (Response) o;
 
-    if (id != null ? !id.equals(response.id) : response.id != null) {
-      return false;
-    }
-    if (coment != null ? !coment.equals(response.coment) : response.coment != null) {
-      return false;
-    }
-    return rate != null ? rate.equals(response.rate) : response.rate == null;
+    return Objects.equals(id, response.id);
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (coment != null ? coment.hashCode() : 0);
-    result = 31 * result + (rate != null ? rate.hashCode() : 0);
-    return result;
+
+    return id != null ? id.hashCode() : 0;
   }
 
   @ManyToMany(mappedBy = "responses")

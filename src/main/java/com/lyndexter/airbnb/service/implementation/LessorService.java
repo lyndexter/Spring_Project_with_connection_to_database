@@ -45,11 +45,5 @@ public class LessorService extends CommonServiceImplementation<Lessor, Integer> 
 
     return newEntity;
   }
-
-  @Override
-  protected void checkIfEmpty(Lessor entity) {
-    if (repository.existsById(entity.getId())) {
-      throw new AlreadyExistsLessorException();
-    }
-  }
+  
 }

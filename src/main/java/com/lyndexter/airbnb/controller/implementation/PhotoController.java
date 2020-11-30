@@ -77,12 +77,48 @@ public class PhotoController implements ControllerWithDto<PhotoDto, Photo> {
     return new ResponseEntity<>(photosDto, HttpStatus.OK);
   }
 
+  @PostMapping(value = "/lyndexter/photo/{photoId}/apartament/{apartamentId}}")
+  public ResponseEntity<PhotoDto> setPhotoForApartament(
+      @PathVariable Integer photoId, @PathVariable Integer apartamentId) {
+    Photo photo = photoService.setPhotoForApartament(apartamentId, photoId);
+    PhotoDto photoDto = createDto(photo);
+
+    return new ResponseEntity<>(photoDto, HttpStatus.OK);
+  }
+
+  @DeleteMapping(value = "/lyndexter/photo/{photoId}/apartament/{apartamentId}}")
+  public ResponseEntity<PhotoDto> deletePhotoForApartament(
+      @PathVariable Integer photoId, @PathVariable Integer apartamentId) {
+    Photo photo = photoService.deletePhotoForApartament(apartamentId, photoId);
+    PhotoDto photoDto = createDto(photo);
+
+    return new ResponseEntity<>(photoDto, HttpStatus.OK);
+  }
+
   @GetMapping(value = "/lyndexter/photo/response/{responseId}")
   public ResponseEntity<List<PhotoDto>> getPhotosByResponse(@PathVariable Integer responseId) {
     Set<Photo> photos = photoService.getPhotosByResponseId(responseId);
     List<PhotoDto> photosDto = createDtos(photos);
 
     return new ResponseEntity<>(photosDto, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/lyndexter/photo/{photoId}/response/{responseId}}")
+  public ResponseEntity<PhotoDto> setPhotoForResponse(
+      @PathVariable Integer photoId, @PathVariable Integer responseId) {
+    Photo photo = photoService.setPhotoForResponse(responseId, photoId);
+    PhotoDto photoDto = createDto(photo);
+
+    return new ResponseEntity<>(photoDto, HttpStatus.OK);
+  }
+
+  @DeleteMapping(value = "/lyndexter/photo/{photoId}/response/{responseId}}")
+  public ResponseEntity<PhotoDto> deletePhotoForResponse(
+      @PathVariable Integer photoId, @PathVariable Integer responseId) {
+    Photo photo = photoService.deletePhotoForResponse(responseId, photoId);
+    PhotoDto photoDto = createDto(photo);
+
+    return new ResponseEntity<>(photoDto, HttpStatus.OK);
   }
 
   @Override

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -94,35 +95,13 @@ public class Renter {
 
     Renter renter = (Renter) o;
 
-    if (id != null ? !id.equals(renter.id) : renter.id != null) {
-      return false;
-    }
-    if (name != null ? !name.equals(renter.name) : renter.name != null) {
-      return false;
-    }
-    if (surname != null ? !surname.equals(renter.surname) : renter.surname != null) {
-      return false;
-    }
-    if (lastName != null ? !lastName.equals(renter.lastName) : renter.lastName != null) {
-      return false;
-    }
-    if (phoneNumber != null
-        ? !phoneNumber.equals(renter.phoneNumber)
-        : renter.phoneNumber != null) {
-      return false;
-    }
-    return cardNumber != null ? cardNumber.equals(renter.cardNumber) : renter.cardNumber == null;
+    return Objects.equals(id, renter.id);
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (surname != null ? surname.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-    result = 31 * result + (cardNumber != null ? cardNumber.hashCode() : 0);
-    return result;
+
+    return id != null ? id.hashCode() : 0;
   }
 
   @OneToMany(mappedBy = "renter")

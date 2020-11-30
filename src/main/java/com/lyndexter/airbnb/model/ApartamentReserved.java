@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "apartament_reserved")
@@ -63,22 +64,13 @@ public class ApartamentReserved {
     }
 
     ApartamentReserved that = (ApartamentReserved) o;
-
-    if (id != null ? !id.equals(that.id) : that.id != null) {
-      return false;
-    }
-    if (reserved != null ? !reserved.equals(that.reserved) : that.reserved != null) {
-      return false;
-    }
-    return wish != null ? wish.equals(that.wish) : that.wish == null;
-  }
+  
+    return Objects.equals(id, that.id);}
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (reserved != null ? reserved.hashCode() : 0);
-    result = 31 * result + (wish != null ? wish.hashCode() : 0);
-    return result;
+  
+    return id != null ? id.hashCode() : 0;
   }
 
   @ManyToOne
