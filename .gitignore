@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 *.yml
+!application.yml
+Dockerfile
 
 ### STS ###
 .apt_generated

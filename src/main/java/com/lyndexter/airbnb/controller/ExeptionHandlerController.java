@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ExeptionHandlerController extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(NoSuchPhotoException.class)
-  ResponseEntity<MessageDto> handleNoSushCityException() {
+  ResponseEntity<MessageDto> handleNoSuсhЗрщещException() {
     return new ResponseEntity<>(
         new MessageDto("Such Photo is not present in database"), HttpStatus.NOT_FOUND);
   }
