@@ -1,5 +1,4 @@
 HELP.md
-!target/airbnb-0.0.1-SNAPSHOT-spring-boot.jar
 target/
 
 !.mvn/wrapper/maven-wrapper.jar
